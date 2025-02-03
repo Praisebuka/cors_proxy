@@ -1,12 +1,12 @@
-const { createServer } = require("cors-anywhere");
+var createServer = require('cors-anywhere').createServer;
 
-const corsProxy = createServer({
+var corsProxy = createServer({
   originWhitelist: [], // Allow all origins
   requireHeader: [], // No header restrictions
-  removeHeaders: [] // No headers removed
+  removeHeaders: [], // No headers removed
 });
 
-module.exports = async (req, res) => {
-  req.url = req.url.replace(/^\/api/, ""); // Adjust request path for Vercel
-  corsProxy.emit("request", req, res);
+module.exports = function (req, res) {
+  req.url = req.url.replace(/^\/api/, ''); // Adjust request path for Vercel
+  corsProxy.emit('request', req, res);
 };
