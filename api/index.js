@@ -7,6 +7,6 @@ var corsProxy = createServer({
 });
 
 module.exports = function (req, res) {
-  req.url = req.url.replace(/^\/api/, ''); // Adjust request path for Vercel
+  req.url = req.url.replace(/^\/api/^/v1/, ''); // Adjust request path for Vercel
   corsProxy.emit('request', req, res);
 };
